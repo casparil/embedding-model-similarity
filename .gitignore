@@ -1,0 +1,14 @@
+.env
+*.pyc
+*.warc
+*.jsonl
+*.warc.gz
+.DS_Store
+chromadb/
+warcs/
+visualizations/
+poetry.lock
+runs/
+datasets/
+_*/
+.idea
