@@ -1,5 +1,4 @@
 from .check_env import check_env
-from .connect_to_source import connect_to_source
 from .list_available_collections import list_available_collections
 from .json_loader import JSONDataset, collate_fn
 from .dataset_folders import choose_dataset_folder
