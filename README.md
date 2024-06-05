@@ -5,7 +5,7 @@
 Use the following commands to clone the project and instal its dependencies:
 
 ```bash
-git clone <repo-link>
+git clone https://github.com/casparil/embedding-model-similarity
 poetry env use 3.11
 poetry install
 ```
@@ -44,11 +44,11 @@ poetry run flask ingest_ds # The dataset should contain corpus.jsonl, queries.js
 
 # Folder structure in datasets:
 # -datasets/
-# --msmarco/
+# --fiqa/
 # ---qrels/
 # ---corpus.jsonl
 # ---queries.jsonl
-# --nq/
+# --nfcorpus/
 # ---qrels/
 # ---corpus.jsonl
 # ---queries.jsonl
