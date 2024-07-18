@@ -1,3 +1,10 @@
+# Beyond Benchmarks: Evaluating Embedding Model Similarity for Retrieval Augmented Generation Systems
+
+This repository contains the code for our paper at the IR-RAG workshop at SIGIR 2024 "Beyond Benchmarks: Evaluating
+Embedding Model Similarity for Retrieval Augmented Generation Systems".
+
+[arXiv](https://arxiv.org/abs/2407.08275)
+
 ## Installation
 - [Python 3.11+](https://python.org)
 - [Python Poetry](https://python-poetry.org/)
