@@ -44,7 +44,12 @@ def evaluate_ds_collections() -> None:
         return
 
     try:
-        db_name = selected_folder + "_" + chunk_size
+        db_name = f"{selected_folder}_{chunk_size}"
+
+        if environ["VECTOR_SEARCH_TEXT_SPLITTER"]:
+            name = environ["VECTOR_SEARCH_TEXT_SPLITTER"].split("/")[-1]
+            db_name = f"{selected_folder}_{chunk_size}_{name}"
+
         chroma_client.set_tenant(tenant=DEFAULT_TENANT, database=db_name)
     except ValueError:
         click.echo("No separate database found for dataset. Using default database.")

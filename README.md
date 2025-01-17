@@ -9,7 +9,7 @@ Embedding Model Similarity for Retrieval Augmented Generation Systems".
 - [Python 3.11+](https://python.org)
 - [Python Poetry](https://python-poetry.org/)
 
-Use the following commands to clone the project and instal its dependencies:
+Use the following commands to clone the project and install its dependencies:
 
 ```bash
 git clone https://github.com/casparil/embedding-model-similarity

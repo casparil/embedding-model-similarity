@@ -50,22 +50,24 @@ def ingest_dataset() -> None:
         click.echo("Invalid tokens per chunk value. Exiting.")
         return
 
+    tokenizer = model_name if not environ["VECTOR_SEARCH_TEXT_SPLITTER"] else environ["VECTOR_SEARCH_TEXT_SPLITTER"]
+
     # Use the tokens_per_chunk value when initializing the text_splitter
-    if model_name in OPENAI_MODELS:
+    if tokenizer in OPENAI_MODELS:
         text_splitter = TokenTextSplitter(
-            model_name=model_name,
+            model_name=tokenizer,
             chunk_overlap=chunk_overlap,
             chunk_size=tokens_per_chunk
         )
         transformer_model = model_name
         client = OpenAI(api_key=environ["OPENAI_KEY"])
-    elif model_name in COHERE_MODELS:
+    elif tokenizer in COHERE_MODELS:
         client = cohere.Client(environ["COHERE_KEY"])
         text_splitter = client
         transformer_model = model_name
     else:
         text_splitter = SentenceTransformersTokenTextSplitter(
-            model_name=model_name,
+            model_name=tokenizer,
             chunk_overlap=chunk_overlap,
             tokens_per_chunk=tokens_per_chunk,  # Use the user-provided value
         )
@@ -79,6 +81,10 @@ def ingest_dataset() -> None:
 
     admin_client = AdminClient.from_system(chroma_client._system)
     db_name = f"{selected_folder}_{tokens_per_chunk}"
+
+    if environ["VECTOR_SEARCH_TEXT_SPLITTER"]:
+        name = environ["VECTOR_SEARCH_TEXT_SPLITTER"].split("/")[-1]
+        db_name = f"{selected_folder}_{tokens_per_chunk}_{name}"
 
     try:
         admin_client.create_database(db_name)
